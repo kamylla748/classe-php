@@ -1,0 +1,196 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+ 
+<?php 
+ 
+//CLASSE USER 
+class Usuario { 
+ 
+///CARACTERISTICAS 
+  public $name; 
+  public $email; 
+  public $CEP; 
+  private $cpf; 
+  private $senha; 
+ 
+  
+  public function __construct($name, $email, $CEP, $cpf, $senha ) { 
+    $this->name = $name; 
+    $this->email = $email; 
+    $this->CEP = $CEP; 
+    $this->cpf = $cpf; 
+    $this->senha = $senha; 
+  } 
+ 
+   
+  public function intro() { 
+    echo "Meu nome é {$this->name}, meu email é {$this->email} 
+    e meu CEP é {$this->CEP}."; 
+  } 
+  public function getCpf() { 
+    return $this->cpf; 
+  } 
+ 
+  public function getSenha() { 
+    return $this->senha; 
+  } 
+ 
+  public function getName() { 
+    return $this->name; 
+  } 
+} 
+ 
+// 
+class TrabalhadorInformal extends Usuario { 
+    public function message() { 
+        echo "Sou um trabalhador informal!! "; 
+      } 
+} 
+ 
+class Curioso extends Usuario { 
+    public function message() { 
+        echo "Não sou um trabalhador informal, só quero saber mais sobre 
+os direitos dos trabalhadores informais!! "; 
+      } 
+} 
+ 
+///CLASSE DENUNCIA 
+ 
+class Denuncia  { 
+  public $denuncia; 
+  public $usuario; 
+  public function message() { 
+      echo " olá sou o {$this->usuario->getName()} e fiz a seguinte 
+denuncia: {$this->denuncia} "; 
+    }  
+    public function __construct( Usuario $usuario, $denuncia) { 
+      $this->denuncia = $denuncia; 
+      $this->usuario = $usuario; 
+    } 
+    public function getDenuncia() { 
+      return $this->denuncia; 
+  } 
+ 
+  public function getUsuario() { 
+      return $this->usuario; 
+} 
+} 
+ 
+///CLASSE PERGUNTA 
+ 
+class Pergunta  { 
+    public $pergunta; 
+    public $usuario; 
+    public function message() { 
+        echo " olá sou o(a) {$this->usuario->getName()} e tenha a 
+seguinte dúvida: {$this->pergunta} "; 
+      }  
+      public function __construct( Usuario $usuario, $pergunta) { 
+        $this->pergunta = $pergunta; 
+        $this->usuario = $usuario; 
+      } 
+      public function getPergunta() { 
+        return $this->pergunta; 
+    } 
+   
+    public function getUsuario() { 
+        return $this->usuario; 
+  } 
+  } 
+ 
+  ///CLASSE COMENTARIOS 
+ 
+class Comentarios { 
+    public $comenta; 
+    public $usuario; 
+    public function message() { 
+        echo "{$this->usuario->getName()} : {$this->comenta} "; 
+      }  
+      public function __construct( Usuario $usuario, $comenta) { 
+        $this->comenta = $comenta; 
+        $this->usuario = $usuario; 
+      } 
+      public function getComentarios() { 
+        return $this->comenta; 
+    } 
+   
+    public function getUsuario() { 
+        return $this->usuario; 
+  } 
+  } 
+ 
+//USERS 
+$user1 = new TrabalhadorInformal("Charles Darwin", 
+"@provientesdaevolucao_618", "54565-000" 
+, "219829127-09", "adaptacaosempre" ); 
+ 
+$user2 = new TrabalhadorInformal("Pasteur", "@fora_abiogenese", "82723
+900" 
+, "273824908-12", "pasteurização"); 
+ 
+$user3 = new Curioso("Marie Curie", "@mulherfera", "82877-300" 
+, "228328283-33","polonioradio");
+
+///DENUNCIAS
+$denuncia = new DENUNCIA ($user1,"Meu trabalho está sendo abusivo, toda 
+vez reclamo das condições desumanas e eles 
+ continuam dando desculpas e atropelando os meus direitos, estão 
+utilizando a evolução como modo  
+ de superioridade dentro da propria espécie."); 
+ echo "<BR><BR>"; 
+ 
+$denuncia2 = new Denuncia ($user2, "Estou abismado, no meu trabalho 
+enquanto pagava a garantia dos  
+meus direitos fiquei doente e tive que continuar trabalhando, pois 
+disseram que a quantia não era o suficiente "); 
+ 
+///PERGUNTAS 
+$pergunta1 = new Pergunta($user3,"Como posso obter direitos de 
+aposentadoria sendo trabalhadora informal?"); 
+ echo "<BR><BR>"; 
+ 
+ ///COMENTARIOS 
+$comenta1 = new Comentarios($user1,"olá pessoal, tudo bem?"); 
+$comenta2 = new Comentarios($user3,"tudo simm, como vai o trabalho 
+Darwin?"); 
+$comenta3 = new Comentarios($user1,"exaustivo"); 
+ 
+echo "<BR><BR>"; 
+ 
+///PARTE DO PRINT 
+echo "USUÁRIOS"; 
+echo "<BR><BR>"; 
+$user1->message(); 
+$user1->intro(); 
+ 
+echo "<BR><BR>"; 
+$user2->message(); 
+$user2->intro(); 
+ 
+echo "<BR><BR>"; 
+$user3->message(); 
+$user3->intro(); 
+echo "<BR><BR>"; 
+ 
+echo "DENÚNCIAS"; 
+ 
+echo "<BR><BR>"; 
+$denuncia1->message(); 
+echo "<BR><BR>"; 
+$denuncia2->message(); 
+echo "<BR><BR>"; 
+echo "PERGUNTAS"; 
+echo "<BR><BR>"; 
+$pergunta1->message(); 
+echo "<BR><BR>"; 
+echo "COMUNIDADE"; 
+echo "<BR><BR>"; 
+$comenta1->message(); 
+echo "<BR><BR>"; 
+$comenta2->message(); 
+echo "<BR><BR>"; 
+$comenta3->message(); 
+?> 
+</body> 
+</html> 
